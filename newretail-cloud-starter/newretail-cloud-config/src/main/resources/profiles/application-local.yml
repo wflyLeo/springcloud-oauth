@@ -1,0 +1,17 @@
+# 基础信息 本地环境
+uooguo-newretail-cloud:
+  local: localhost
+  hosts:
+    gateway: ${uooguo-newretail-cloud.local}
+    registry: ${uooguo-newretail-cloud.local}
+    config: ${uooguo-newretail-cloud.local}
+# MySQL
+DB_HOST: 192.168.10.11
+DB_PASS: 123456
+# Redis
+REDIS_HOST: 192.168.10.11
+REDIS_DB: 0
+#RabbitMQ
+RABBITMQ_HOST: 192.168.10.11
+RABBITMQ_USER: admin
+RABBITMQ_PASS: 123

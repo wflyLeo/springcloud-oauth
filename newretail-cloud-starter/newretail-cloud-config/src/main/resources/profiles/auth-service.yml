@@ -1,0 +1,7 @@
+server:
+  port: ${newretail.ports.auth-service}
+  servlet:
+    context-path: ${newretail.servlet.context-path.auth-service}
+spring:
+  datasource:
+    name: ${newretail.database.auth-service:test}

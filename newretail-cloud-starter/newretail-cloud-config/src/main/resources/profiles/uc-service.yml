@@ -1,0 +1,7 @@
+server:
+  port: ${newretail.ports.uc-service}
+  servlet:
+    context-path: ${newretail.servlet.context-path.uc-service}
+spring:
+  datasource:
+    name: ${newretail.database.uc-service:test}

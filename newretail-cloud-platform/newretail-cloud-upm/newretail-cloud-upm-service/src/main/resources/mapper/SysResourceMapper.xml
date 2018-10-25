@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uooguo.newretail.cloud.upm.mapper.SysResourceMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.uooguo.newretail.cloud.upm.entity.SysResource">
+        <id column="id" property="id"/>
+        <result column="code" property="code"/>
+        <result column="parent" property="parent"/>
+        <result column="name" property="name"/>
+        <result column="url" property="url"/>
+        <result column="icon" property="icon"/>
+        <result column="sort" property="sort"/>
+        <result column="status" property="status"/>
+        <result column="load_type" property="loadType"/>
+        <result column="type" property="type"/>
+        <result column="description" property="description"/>
+        <result column="service_id" property="serviceId"/>
+        <result column="route" property="route"/>
+        <result column="is_parents" property="parents"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+      id,
+      code,
+      parent,
+      name,
+      url,
+      icon,
+      sort,
+      status,
+      load_type AS loadType,
+      type,
+      description,
+      service_id AS serviceId,
+      route,
+      is_parents AS parents
+    </sql>
+
+    <select id="findMenuByUserId" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from newretail_sys_resource where id in
+        (select sys_resource_id from newretail_sys_authority where sys_role_id in
+        (select sys_role_id from newretail_user_role where sys_user_id = #{userId}))
+        and load_type = '1' and status = 'Y'
+    </select>
+
+
+</mapper>

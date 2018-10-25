@@ -1,0 +1,48 @@
+server:
+  port: 8888
+
+
+spring:
+  application:
+    name: config
+  security:
+    user:
+      name: "admin"
+      password: "123"
+  profiles:
+    active: native
+  cloud:
+    config:
+      #配置文件路径
+      server:
+        native:
+          search-locations: classpath:/profiles
+
+
+
+
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 10
+    #健康监测
+    health-check-url-path: /actuator/health
+    prefer-ip-address: true
+    instanceId: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
+    metadata-map:
+      user.name:  ${spring.security.user.name}
+      user.password:  ${spring.security.user.password}
+  client:
+    registryFetchIntervalSeconds: 5
+    service-url:
+      defaultZone: ${EUREKA_URL:http://localhost:8761/eureka}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+
+

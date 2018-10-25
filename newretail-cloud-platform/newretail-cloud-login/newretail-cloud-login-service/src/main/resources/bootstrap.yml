@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: login-service
+  cloud:
+    config:
+      #快速失败，避免雪崩
+      fail-fast: true
+      retry:
+        max-attempts: 10
+        max-interval: 10000
+        initial-interval: 1000
+      profile: ${SPRING_CLOUD_CONFIG_PROFILE:local}
+      discovery:
+        enabled: true
+        service-id: config
+      username: "admin"
+      password: "123"
+      #配置中心地址，环境变量读取不到则读取默认值
+      #uri: ${SPRING_CLOUD_CONFIG_URI:http://admin:123@localhost:8888}
+
+#ip地址
+eureka:
+  instance:
+    instanceId: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
+

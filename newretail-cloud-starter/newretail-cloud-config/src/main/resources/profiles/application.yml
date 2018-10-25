@@ -1,0 +1,192 @@
+#logging:
+#  path: ../logs
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 10000
+
+#  说明：形如${AAA:BBB}的配置，当环境变量中存在AAA变量时，取AAA，否则取BBB
+
+security:
+  oauth2:
+    resource:
+      user-info-uri: http://${uooguo-newretail-cloud.hosts.gateway}:${uooguo-newretail-cloud.ports.gateway}/api/auth/current
+      id: ${spring.application.name:}
+    client:
+      client-Id: webApp
+      client-Secret: 123456
+      access-token-uri: http://${uooguo-newretail-cloud.hosts.gateway}:${uooguo-newretail-cloud.ports.gateway}/api/auth/oauth/token
+      grant-type: password
+      scope: webApp
+
+#优菓新零售项目业务服务端口和数据库总配置
+newretail:
+  ports:
+    uc-service: 8104
+    upm-service: 8105
+    auth-service: 8106
+    login-service: 8112
+  database:
+    uc-service: newretail_cloud
+    upm-service: newretail_cloud
+    auth-service: newretail_cloud
+    login-service: newretail_cloud
+  servlet:
+    context-path:
+      uc-service: /uc
+      upm-service: /upm
+      auth-service: /auth
+      login-service: /login
+  swagger2:
+    enable: true
+    base-package: com.uooguo.newretail
+    title : newretail-cloud
+    description: Uooguo-Cloud Restful API docs
+    termsOfServiceUrl : http://localhost:4000
+    version: 1.0
+    apiName: Authorization
+    apiKeyName: Authorization
+
+#优菓新零售项目基础服务配置
+uooguo-newretail-cloud:
+  local: localhost
+  hosts:
+    registry: registry
+    gateway: gateway
+    config: config
+  ports:
+    registry: 8761
+    gateway: 80
+    config: 8888
+  servlet:
+    context-path:
+      #待配置
+  database:
+    url: ${UOOGUO_NEWRETAIL_CLOUD_URL:http://${uooguo-newretail-cloud.hosts.gateway}:${uooguo-newretail-cloud.ports.gateway}}
+
+# 优菓新零售项目公共配置
+uooguo-newretail-cloud-common:
+  redis:
+    fast-json-serializer: ${UOOGUO_NEWRETAIL_CLOUD_COMMON_REDIS_FAST_JSON_SERIALIZER:true}
+  feign:
+    debug: ${UOOGUO_NEWRETAIL_CLOUD_COMMON_FEIGN_DEBUG:false}
+    proxy:
+      enabled: ${UOOGUO_NEWRETAIL_CLOUD_COMMON_FEIGN_PROXY_ENABLED:true}
+      header: ${UOOGUO_NEWRETAIL_CLOUD_COMMON_FEIGN_PROXY_HEADER:Cookie,Authorization}
+
+# 注册中心地址
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_CLIENT_SERVICEURL_DEFAULTZONE:http://${uooguo-newretail-cloud.hosts.registry}:${uooguo-newretail-cloud.ports.registry}/eureka/}
+    # 每15秒刷新一次注册中心
+    eureka-service-url-poll-interval-seconds: ${EUREKA_SERVICE_URL_POLL_INTERVAL_SECONDS:300}
+  instance:
+    prefer-ip-address: true
+    leaseRenewalIntervalInSeconds: 10
+    health-check-url-path: ${server.servlet.context-path:}/actuator/health
+    metadata-map:
+       user.name: ${spring.security.user.name}
+       user.password: ${spring.security.user.password}
+       management.context-path: ${server.servlet.context-path:}/actuator
+
+# Ribbon相关配置
+ribbon:
+  ReadTimeout: ${RIBBON_READTIMEOUT:30000}
+  SocketTimeout: ${RIBBON_SOCKETTIMEOUT:30000}
+  ConnectTimeout: ${RIBBON_CONNECTTIMEOUT:5000}
+  httpclient:
+    enabled: ${HTTPCLIENT_ENABLED:true}
+  okhttp:
+    enabled: ${OKHTTP_ENABLED:true}
+
+# Feign相关配置
+feign:
+  httpclient:
+    enabled: ${HTTPCLIENT_ENABLED:true}
+  okhttp:
+    enabled: ${OKHTTP_ENABLED:true}
+
+
+#spring基础配置
+spring:
+  #安全验证
+  security:
+    user:
+      name: "admin"
+      password: "123"
+  #默认的rabbitmq配置
+  rabbitmq:
+    host: ${RABBITMQ_HOST:${uooguo-newretail-cloud.local}}
+    port: ${RABBITMQ_PORT:5672}
+    username: ${RABBITMQ_USER:root}
+    password: ${RABBITMQ_PASS:root}
+  # Http请求相关配置
+  http:
+    # 编码配置
+    encoding:
+      force: true
+  servlet:
+    multipart:
+      max-file-size: 100Mb
+      max-request-size: 100Mb
+  #默认的数据库配置
+  datasource:
+    name: ${DB_NAME:test}
+    host: ${DB_HOST:${uooguo-newretail-cloud.local}}
+    driver-class-name: com.mysql.jdbc.Driver
+    url: ${DB_URL:jdbc:mysql://${spring.datasource.host}/${spring.datasource.name}?characterEncoding=utf8&allowMultiQueries=true&useSSL=false}
+    username: ${DB_USER:root}
+    password: ${DB_PASS:root}
+    tomcat:
+      initial-size: 100
+      max-active: 500
+
+  #redis默认配置
+  redis:
+    host: ${REDIS_HOST:${uooguo-newretail-cloud.local}}
+    port: 6379
+    password: ${REDIS_SERVER_PASSWORD:}
+    database: ${REDIS_DB:0}
+    timeout: 1000ms
+
+server:
+  tomcat:
+    max-http-post-size: 104857600
+#mybatis配置
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*Mapper.xml
+  #实体扫描，多个package用逗号或者分号分隔
+  typeAliasesPackage: com.uooguo.newretail.**.entity
+  typeEnumsPackage: com.uooguo.newretail.**.enums
+  global-config:
+    #主键类型  0:"数据库ID自增", 1:"用户输入ID",2:"全局唯一ID (数字类型唯一ID)", 3:"全局唯一ID UUID";
+    id-type: 0
+    #驼峰下划线转换
+    db-column-underline: true
+    #刷新mapper 调试神器
+    refresh-mapper: true
+  configuration:
+    map-underscore-to-camel-case: true
+    #配置的缓存的全局开关
+    cache-enabled: true
+    #延时加载的开关
+    lazyLoadingEnabled: true
+    #开启的话，延时加载一个属性时会加载该对象全部属性，否则按需加载属性
+    multipleResultSetsEnabled: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    call-setters-on-nulls: true
+
+#端点监控
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS

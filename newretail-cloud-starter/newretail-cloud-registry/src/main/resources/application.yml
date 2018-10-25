@@ -1,0 +1,50 @@
+server:
+  port: 8761
+
+spring:
+  application:
+    name: registry
+  #读取开发环境配置文件
+  profiles:
+    active: dev
+  security:
+    user:
+      name: "admin"
+      password: "123"
+
+eureka:
+  instance:
+    hostname: ${spring.cloud.client.ip-address}
+    #显示真实ip地址
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
+  server:
+    wait-time-in-ms-when-sync-empty: 0
+    eviction-interval-timer-in-ms: 5000
+  client:
+    registerWithEureka: true
+    fetchRegistry: false
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+
+#健康监测端点暴露
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
+
+
+newretail:
+  swagger2:
+    enable: true
+    base-package: com.uooguo.newretail
+    title : newretail-cloud
+    description: newretail-Cloud Restful API docs
+    termsOfServiceUrl : http://localhost:4000
+    version: 1.0
+    apiName: Authorization
+    apiKeyName: Authorization

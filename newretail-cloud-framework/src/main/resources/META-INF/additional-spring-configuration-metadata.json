@@ -1,0 +1,17 @@
+{"properties": [
+  {
+    "name": "newretail.sms.type",
+    "type": "java.lang.String",
+    "description": "A description for 'newretail.sms.type'"
+  },
+  {
+    "name": "newretail.sms.aliyun.access-key-id",
+    "type": "java.lang.String",
+    "description": "A description for 'newretail.sms.aliyun.access-key-id'"
+  },
+  {
+    "name": "newretail.sms.aliyun.access-key-secret",
+    "type": "java.lang.String",
+    "description": "A description for 'newretail.sms.aliyun.access-key-secret'"
+  }
+]}

@@ -1,0 +1,7 @@
+server:
+  port: ${newretail.ports.upm-service}
+  servlet:
+    context-path: ${newretail.servlet.context-path.upm-service}
+spring:
+  datasource:
+    name: ${newretail.database.upm-service:test}
