@@ -1,5 +1,6 @@
 package com.uooguo.newretail.cloud.framework.annotation;
 
+import com.uooguo.newretail.cloud.framework.oauth2.feign.EnableOAuth2ClientFeign;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.cloud.client.SpringCloudApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;
@@ -7,6 +8,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.security.oauth2.config.annotation.web.configuration.EnableOAuth2Client;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
@@ -30,5 +32,7 @@ import java.lang.annotation.*;
 @SpringCloudApplication
 @EnableAspectJAutoProxy(proxyTargetClass = true, exposeProxy = true)
 @EnableTransactionManagement
+@EnableOAuth2Client
+@EnableOAuth2ClientFeign
 public @interface UooguoNewretailApplication {
 }

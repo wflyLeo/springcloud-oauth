@@ -106,7 +106,6 @@ public class SysResource extends Model<SysResource> {
     private Boolean parents;
 
 
-
     @Override
     protected Serializable pkVal() {
         return this.id;

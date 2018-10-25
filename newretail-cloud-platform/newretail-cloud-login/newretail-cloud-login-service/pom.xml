@@ -42,11 +42,6 @@
             <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
             <groupId>com.uooguo.newretail</groupId>
             <artifactId>newretail-cloud-framework</artifactId>
         </dependency>

@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>com.uooguo.newretail</groupId>
-		<artifactId>newretail-cloud-platform</artifactId>
-		<version>1.0.0-SNAPSHOT</version>
-	</parent>
-	<artifactId>newretail-cloud-uc</artifactId>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.uooguo.newretail</groupId>
+        <artifactId>newretail-cloud-platform</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+    <artifactId>newretail-cloud-uc</artifactId>
     <modules>
         <module>newretail-cloud-uc-service</module>
-		<module>newretail-cloud-uc-model</module>
-		<module>newretail-cloud-uc-client</module>
+        <module>newretail-cloud-uc-model</module>
+        <module>newretail-cloud-uc-client</module>
     </modules>
     <packaging>pom</packaging>
-	<name>newretail-cloud-uc</name>
-	<dependencies>
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>log4j-over-slf4j</artifactId>
-			<version>1.8.0-beta2</version>
-			<scope>compile</scope>
-		</dependency>
-	</dependencies>
+    <name>newretail-cloud-uc</name>
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>log4j-over-slf4j</artifactId>
+            <version>1.8.0-beta2</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
 
 </project>

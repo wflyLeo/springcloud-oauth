@@ -3,10 +3,6 @@ package com.uooguo.newretail.cloud.upm.mapper;
 
 import com.uooguo.newretail.cloud.framework.base.mapper.BaseMapper;
 import com.uooguo.newretail.cloud.upm.entity.SysRole;
-import org.apache.ibatis.annotations.Param;
-
-import java.util.List;
-import java.util.Map;
 
 /**
  * <p>

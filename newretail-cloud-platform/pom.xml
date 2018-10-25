@@ -14,7 +14,7 @@
     <modules>
         <module>newretail-cloud-auth</module>
         <module>newretail-cloud-upm</module>
-        <module>newretail-cloud-uc</module>      
+        <module>newretail-cloud-uc</module>
         <module>newretail-cloud-login</module>
     </modules>
 

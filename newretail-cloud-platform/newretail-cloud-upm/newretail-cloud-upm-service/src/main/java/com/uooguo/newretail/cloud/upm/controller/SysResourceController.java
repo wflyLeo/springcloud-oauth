@@ -1,6 +1,5 @@
 package com.uooguo.newretail.cloud.upm.controller;
 
-import com.uooguo.newretail.cloud.framework.base.audit.EnableAudit;
 import com.uooguo.newretail.cloud.framework.base.controller.BaseController;
 import com.uooguo.newretail.cloud.upm.entity.SysResource;
 import com.uooguo.newretail.cloud.upm.service.SysResourceService;
@@ -19,7 +18,6 @@ import java.util.List;
  * @author Tiangel
  * @date 2017-12-11
  */
-@EnableAudit
 @RestController
 @RequestMapping("/resource")
 @Api(value = "/resource", tags = "系统资源管理")

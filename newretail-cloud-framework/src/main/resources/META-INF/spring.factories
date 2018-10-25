@@ -1,6 +1,0 @@
-# Auto Configure
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.uooguo.newretail.cloud.framework.mail.MailAutoConfiguration,\
-com.uooguo.newretail.cloud.framework.sms.SmsAutoConfiguration,\
-com.uooguo.newretail.cloud.framework.storage.StorageAutoConfiguration,\
-com.uooguo.newretail.cloud.framework.swagger.Swagger2AutoConfiguration

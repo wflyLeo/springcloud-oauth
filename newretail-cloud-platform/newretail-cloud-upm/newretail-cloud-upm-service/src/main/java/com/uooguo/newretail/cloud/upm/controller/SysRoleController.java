@@ -1,6 +1,5 @@
 package com.uooguo.newretail.cloud.upm.controller;
 
-import com.uooguo.newretail.cloud.framework.base.audit.EnableAudit;
 import com.uooguo.newretail.cloud.framework.base.controller.BaseController;
 import com.uooguo.newretail.cloud.upm.entity.SysRole;
 import com.uooguo.newretail.cloud.upm.service.SysRoleService;
@@ -22,7 +21,6 @@ import java.util.List;
  * @author Tiangel
  * @date 2017.12.10
  */
-@EnableAudit
 @RestController
 @RequestMapping("/role")
 @Api(value = "/role", tags = "系统角色管理")

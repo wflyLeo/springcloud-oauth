@@ -162,51 +162,6 @@
         </dependency>
     </dependencies>
 
-    <repositories>
-        <repository>
-            <id>uooguo</id>
-            <name>优菓Maven仓库</name>
-            <url>http://192.168.10.22:8081/repository/maven-public/</url>
-            <snapshots>
-                <enabled>true</enabled>
-                <updatePolicy>always</updatePolicy>
-            </snapshots>
-        </repository>
-    </repositories>
-
-    <pluginRepositories>
-        <pluginRepository>
-            <id>uooguo</id>
-            <name>优菓Maven仓库</name>
-            <url>http://192.168.10.22:8081/repository/maven-public/</url>
-        </pluginRepository>
-    </pluginRepositories>
-
-    <distributionManagement>
-        <repository>
-            <id>uooguo</id>
-            <name>Uooguo Project Release</name>
-            <url>http://192.168.10.22:8081/repository/maven-releases/</url>
-        </repository>
-
-        <snapshotRepository>
-            <id>uooguo</id>
-            <name>Uooguo Project SNAPSHOTS</name>
-            <url>http://192.168.10.22:8081/repository/maven-snapshots/</url>
-        </snapshotRepository>
-    </distributionManagement>
-    <!--<build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <finalName>${project.name}</finalName>
-                    <outputDirectory>/newretail-cloud-framework/dist</outputDirectory>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>-->
     <build>
         <plugins>
             <plugin>

@@ -8,6 +8,7 @@ import java.util.Map;
 
 @FeignClient(name = "auth-service")
 public interface OauthClient {
+
     @PostMapping(path = "/auth/oauth/token")
     Map<String, Object> postAccessToken(@RequestParam Map<String, String> parameters);
 

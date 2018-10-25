@@ -3,10 +3,6 @@ package com.uooguo.newretail.cloud.uc.mapper;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.uooguo.newretail.cloud.uc.entity.SysUser;
-import org.apache.ibatis.annotations.Param;
-
-import java.util.List;
-import java.util.Map;
 
 /**
  * <p>
