@@ -4,6 +4,9 @@ package com.uooguo.newretail.cloud.uc.mapper;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.uooguo.newretail.cloud.uc.entity.SysUser;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * <p>
  * 用户信息表 Mapper 接口
@@ -14,4 +17,5 @@ import com.uooguo.newretail.cloud.uc.entity.SysUser;
  */
 public interface SysUserMapper extends BaseMapper<SysUser> {
 
+    List<Map<String, Object>> findPage(String param);
 }

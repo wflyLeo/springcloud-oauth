@@ -20,7 +20,7 @@ public class UpmApplication extends ResourceServerConfigurerAdapter {
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/v2/api-docs", "/actuator/**", "/resource/findMenuByUserId", "/role/findRoleByUserId").permitAll()
+                .antMatchers("/v2/api-docs", "/actuator/**").permitAll()
                 .and().authorizeRequests().anyRequest().authenticated();
     }
 

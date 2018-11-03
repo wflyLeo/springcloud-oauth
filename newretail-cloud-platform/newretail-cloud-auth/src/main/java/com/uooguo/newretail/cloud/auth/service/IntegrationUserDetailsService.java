@@ -6,19 +6,13 @@ import com.uooguo.newretail.cloud.auth.integration.authenticator.IntegrationAuth
 import com.uooguo.newretail.cloud.framework.util.Assert;
 import com.uooguo.newretail.cloud.framework.util.User;
 import com.uooguo.newretail.cloud.uc.model.SysUserAuthentication;
-import com.uooguo.newretail.cloud.upm.client.SysResourceClient;
-import com.uooguo.newretail.cloud.upm.client.SysRoleClient;
-import com.uooguo.newretail.cloud.upm.entity.SysResource;
-import com.uooguo.newretail.cloud.upm.entity.SysRole;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * 集成认证用户服务
@@ -28,12 +22,6 @@ import java.util.stream.Collectors;
  **/
 @Service
 public class IntegrationUserDetailsService implements UserDetailsService {
-
-    @Resource
-    private SysResourceClient sysResourceClient;
-
-    @Resource
-    private SysRoleClient sysRoleClient;
 
     private List<IntegrationAuthenticator> authenticators;
 
@@ -59,25 +47,8 @@ public class IntegrationUserDetailsService implements UserDetailsService {
 
         User user = new User();
         BeanUtils.copyProperties(sysUserAuthentication, user);
-        this.setAuthorize(user);
         return user;
 
-    }
-
-    /**
-     * 设置授权信息
-     *
-     * @param
-     */
-    public void setAuthorize(User user) {
-        List<SysResource> resources = sysResourceClient.findMenuByUserId(user.getId());
-        List<Long> resource = resources.stream().map(SysResource::getId).collect(Collectors.toList());
-
-        List<SysRole> roles = sysRoleClient.findRoleByUserId(user.getId());
-        List<Long> role = roles.stream().map(SysRole::getId).collect(Collectors.toList());
-
-        user.setRoles(role);
-        user.setResources(resource);
     }
 
     private SysUserAuthentication authenticate(IntegrationAuthentication integrationAuthentication) {

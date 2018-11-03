@@ -1,7 +1,9 @@
 package com.uooguo.newretail.cloud.uc.service;
 
 
+import com.uooguo.newretail.cloud.framework.base.pagination.PageInfo;
 import com.uooguo.newretail.cloud.framework.base.service.BaseService;
+import com.uooguo.newretail.cloud.framework.core.protocol.Result;
 import com.uooguo.newretail.cloud.uc.entity.SysUser;
 import com.uooguo.newretail.cloud.uc.model.SysUserAuthentication;
 
@@ -23,4 +25,12 @@ public interface SysUserService extends BaseService<SysUser> {
      */
     SysUserAuthentication findUserByUsername(String username);
 
+    /**
+     * 获取用户列表
+     *
+     * @param param
+     * @param pageInfo
+     * @return
+     */
+    Result findPage(String param, PageInfo pageInfo);
 }
