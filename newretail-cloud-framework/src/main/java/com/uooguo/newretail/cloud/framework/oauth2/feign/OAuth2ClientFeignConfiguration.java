@@ -29,11 +29,11 @@ import java.util.Map;
 @Configuration
 public class OAuth2ClientFeignConfiguration extends ResourceServerConfigurerAdapter implements RequestInterceptor {
 
-    @Value("${security.oauth2.client.client-Id}")
+    @Value("${security.oauth2.client.client-id}")
     private String clientId;
     @Value("${security.oauth2.client.access-token-uri}")
     private String accessTokenUrl;
-    @Value("${security.oauth2.client.client-Secret}")
+    @Value("${security.oauth2.client.client-secret}")
     private String clientSecret;
     @Value("${security.oauth2.client.grant-type}")
     private String grantType;

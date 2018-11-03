@@ -17,8 +17,8 @@ security:
       user-info-uri: http://${uooguo-newretail-cloud.hosts.gateway}:${uooguo-newretail-cloud.ports.gateway}/api/auth/current
       id: ${spring.application.name:}
     client:
-      client-Id: webApp
-      client-Secret: 123456
+      client-id: webApp
+      client-secret: 123456
       access-token-uri: http://${uooguo-newretail-cloud.hosts.gateway}:${uooguo-newretail-cloud.ports.gateway}/api/auth/oauth/token
       grant-type: password
       scope: webApp

@@ -16,7 +16,6 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.client.JdbcClientDetailsService;
-import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 
 import javax.annotation.Resource;
 import javax.sql.DataSource;
@@ -38,21 +37,6 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     @Resource
     private DataSource dataSource;
 
-    /*@Bean
-    public AuthenticationManager authenticationManager(){
-        return new AuthenticationManager();
-    };*/
-
-    /*@Bean
-    @Primary
-    public DefaultTokenServices tokenServices() {
-        DefaultTokenServices defaultTokenServices = new DefaultTokenServices();
-        defaultTokenServices.setTokenStore(myRedisTokenStore());
-        defaultTokenServices.setSupportRefreshToken(true);
-        return defaultTokenServices;
-    }*/
-
-
     @Autowired
     private WebResponseExceptionTranslator webResponseExceptionTranslator;
 
@@ -64,14 +48,6 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-//        clients.inMemory()
-//                .withClient("webApp")
-////                .resourceIds("auth-service", "admin-service", "upm-service", "uc-service")
-//                .scopes("webApp") //此处的scopes是无用的，可以随意设置
-//                .secret(passwordEncoder().encode("123456"))
-//                .authorizedGrantTypes("password", "authorization_code", "refresh_token", "client_credentials")
-
-//        ;
         clients.withClientDetails(new JdbcClientDetailsService(dataSource));
     }
 
@@ -84,7 +60,6 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
         endpoints
                 .tokenStore(myRedisTokenStore())
-//                .accessTokenConverter(jwtAccessTokenConverter())
                 .authenticationManager(authenticationManager)
                 .exceptionTranslator(webResponseExceptionTranslator)
                 .userDetailsService(integrationUserDetailsService)
@@ -103,12 +78,4 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
-    @Bean
-    public JwtAccessTokenConverter jwtAccessTokenConverter() {
-        JwtAccessTokenConverter jwtAccessTokenConverter = new JwtAccessTokenConverter();
-        jwtAccessTokenConverter.setSigningKey("newretail-cloud");
-        return jwtAccessTokenConverter;
-    }
-
 }

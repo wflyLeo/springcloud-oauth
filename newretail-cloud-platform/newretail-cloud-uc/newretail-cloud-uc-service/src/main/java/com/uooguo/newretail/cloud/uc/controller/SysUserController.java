@@ -1,6 +1,8 @@
 package com.uooguo.newretail.cloud.uc.controller;
 
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.uooguo.newretail.cloud.framework.base.controller.BaseController;
+import com.uooguo.newretail.cloud.framework.core.protocol.Result;
 import com.uooguo.newretail.cloud.uc.model.SysUserAuthentication;
 import com.uooguo.newretail.cloud.uc.service.SysUserService;
 import io.swagger.annotations.Api;
@@ -33,6 +35,11 @@ public class SysUserController extends BaseController {
     @PostMapping("/findUserByUsername")
     public SysUserAuthentication findUserByUsername(@RequestParam("username") String username) {
         return this.sysUserService.findUserByUsername(username);
+    }
+
+    @PostMapping("/findAll")
+    public Result findAll() {
+        return this.success(this.sysUserService.selectList(new EntityWrapper<>()));
     }
 
 }
