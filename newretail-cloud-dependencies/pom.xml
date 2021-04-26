@@ -23,7 +23,7 @@
         <spring-boot-admin.version>2.0.1</spring-boot-admin.version>
         <mybatisplus-boot-starter.version>2.3</mybatisplus-boot-starter.version>
         <lombok.version>1.16.18</lombok.version>
-        <commons.io.version>2.5</commons.io.version>
+        <commons.io.version>2.7</commons.io.version>
         <velocity.version>1.7</velocity.version>
         <druid.version>1.0.28</druid.version>
         <beetl.version>2.7.15</beetl.version>
